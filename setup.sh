@@ -201,6 +201,12 @@ chmod ug+x check_balance.sh
 
 tee claim_commission.sh > /dev/null <<EOF
 #!/bin/bash
+${DAEMON_NAME} tx distribution withdraw-rewards ${VALOPER_ADDRESS} \\
+  --from=$VALIDATOR_KEY_NAME \\
+  --commission \\
+  --chain-id="$CHAIN_ID" \\
+  --fees="1000${DENOM}" \\
+  --yes
 ${DAEMON_NAME} tx distribution withdraw-all-rewards \\
   --from=$VALIDATOR_KEY_NAME \\
   --commission \\
