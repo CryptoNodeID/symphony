@@ -186,12 +186,14 @@ sed -i \
 indexer="null" && \
 sed -i -e "s/^[[:space:]]*indexer *=.*/indexer = \"$indexer\"/" ${DAEMON_HOME}/config/config.toml
 
+# Helper scripts
 WALLET_ADDRESS=$(${DAEMON_NAME} keys show $VALIDATOR_KEY_NAME -a)
 VALOPER_ADDRESS=$(${DAEMON_NAME} keys show $VALIDATOR_KEY_NAME --bech val -a)
 
-# Helper scripts
 cd ${INSTALLATION_DIR}
-rm -rf list_keys.sh check_balance.sh create_validator.sh unjail_validator.sh check_validator.sh start_side.sh check_log.sh
+rm -rf ${INSTALLATION_DIR}/helper-scripts
+mkdir ${INSTALLATION_DIR}/helper-scripts
+cd ${INSTALLATION_DIR}/helper-scripts
 
 echo "${DAEMON_NAME} keys list" > list_keys.sh
 chmod ug+x list_keys.sh
@@ -230,6 +232,8 @@ while true; do
         --chain-id="$CHAIN_ID" \\
         --gas="200000" \\
         --gas-prices="0.025${DENOM}"
+
+        exit 0
     fi
 done
 EOF
