@@ -44,11 +44,10 @@ else
     echo "Go version 1.22.0 is already installed."
 fi
 ##Check and install cosmovisor
-if ! command -v cosmovisor > /dev/null 2>&1 || ! which cosmovisor &> /dev/null; then
-    wget https://github.com/cosmos/cosmos-sdk/releases/download/cosmovisor%2Fv1.5.0/cosmovisor-v1.5.0-linux-amd64.tar.gz
-    tar -xvzf cosmovisor-v1.5.0-linux-amd64.tar.gz
-    rm cosmovisor-v1.5.0-linux-amd64.tar.gz
-    sudo cp cosmovisor /usr/local/bin/cosmovisor
+if ! command -v cosmovisor &> /dev/null; then
+    wget https://github.com/cosmos/cosmos-sdk/releases/download/cosmovisor%2Fv1.6.0/cosmovisor-v1.6.0-linux-amd64.tar.gz -O - | tar -xzf -
+    sudo mv -f cosmovisor /usr/local/bin/cosmovisor
+    sudo chmod +x /usr/local/bin/cosmovisor
 fi
 sudo apt -qy install curl git jq lz4 build-essential unzip tar
 
