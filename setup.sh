@@ -3,9 +3,9 @@ DAEMON_NAME=symphonyd
 DAEMON_HOME=$HOME/.symphonyd
 SERVICE_NAME=symphonyd
 INSTALLATION_DIR=$(dirname "$(realpath "$0")")
-CHAIN_ID='symphony-testnet-2'
-GENESIS_URL="https://snapshot.cryptonode.id/symphony-testnet/genesis.json"
-PEERS="8fc13eb23bb09225d08b4da9bb80ab3b2c008990@sentry2.cryptonode.id:23656,bbf8ef70a32c3248a30ab10b2bff399e73c6e03c@symphony-testnet.rpc.nodex.one:24856"
+CHAIN_ID='symphony-testnet-3'
+GENESIS_URL="https://raw.githubusercontent.com/Orchestra-Labs/symphony/main/networks/symphony-testnet-3/genesis.json"
+PEERS="abe4851272627cb33a3972cb794073ed78ff9583@sentry2.cnd.biz.id:23656,eea2dc7e9abfd18787d4cc2c728689ad658cd3a2@34.66.161.223:26656"
 RPC="https://symphony-testnet-rpc.cryptonode.id:443"
 SNAP_RPC="https://symphony-testnet-rpc.cryptonode.id:443"
 SEEDS=""
@@ -13,7 +13,7 @@ DENOM='note'
 REPO="https://github.com/Orchestra-Labs/symphony"
 BIN_REPO=""
 REPO_DIR="symphony"
-BRANCH="v0.2.1"
+BRANCH="v0.3.0"
 GOPATH=$HOME/go
 VALIDATOR_CREATE_FILE="cli" # json or cli
 
@@ -264,7 +264,7 @@ EOF
 else
     tee create_validator.sh > /dev/null <<EOF
 ${DAEMON_NAME} tx staking create-validator \\
-  --amount=100000${DENOM} \\
+  --amount=90000${DENOM} \\
   --pubkey=\$(${DAEMON_NAME} tendermint show-validator) \\
   --moniker=${VALIDATOR_KEY_NAME} \\
   --identity=${INPUT_IDENTITY} \\
