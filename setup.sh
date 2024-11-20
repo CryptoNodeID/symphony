@@ -3,17 +3,17 @@ DAEMON_NAME=symphonyd
 DAEMON_HOME=$HOME/.symphonyd
 SERVICE_NAME=symphonyd
 INSTALLATION_DIR=$(dirname "$(realpath "$0")")
-CHAIN_ID='symphony-testnet-3'
-GENESIS_URL="https://raw.githubusercontent.com/Orchestra-Labs/symphony/main/networks/symphony-testnet-3/genesis.json"
-PEERS="abe4851272627cb33a3972cb794073ed78ff9583@sentry2.cnd.biz.id:23656,eea2dc7e9abfd18787d4cc2c728689ad658cd3a2@34.66.161.223:26656"
+CHAIN_ID='symphony-testnet-4'
+GENESIS_URL="https://raw.githubusercontent.com/Orchestra-Labs/symphony/main/networks/symphony-testnet-4/genesis.json"
+PEERS="eea2dc7e9abfd18787d4cc2c728689ad658cd3a2@104.154.135.225:26656,ed33b91ef0743a35206890044cbaac99c8241e26@94.130.143.184:21656"
 RPC="https://symphony-testnet-rpc.cryptonode.id:443"
 SNAP_RPC="https://symphony-testnet-rpc.cryptonode.id:443"
-SEEDS=""
+SEEDS="4660f4c136d4cf916d65b952a1ab67095fe1311f@65.21.234.111:25656"
 DENOM='note'
 REPO="https://github.com/Orchestra-Labs/symphony"
 BIN_REPO=""
 REPO_DIR="symphony"
-BRANCH="v0.3.0"
+BRANCH="v0.4.1"
 GOPATH=$HOME/go
 VALIDATOR_CREATE_FILE="cli" # json or cli
 
@@ -33,15 +33,15 @@ if ! grep -q "export PATH=.*$GOPATH/bin" ~/.profile; then
 fi
 source $HOME/.profile
 ##Check and install Go
-GO_VERSION=$(go version 2>/dev/null | grep -oP 'go1\.22\.0')
-if [ -z "$(echo "$GO_VERSION" | grep -E 'go1\.22\.0')" ]; then
-    echo "Go is not installed or not version 1.22.0. Installing Go 1.22.0..."
-    wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+GO_VERSION=$(go version 2>/dev/null | grep -oP 'go1\.23\.3')
+if [ -z "$(echo "$GO_VERSION" | grep -E 'go1\.23\.3')" ]; then
+    echo "Go is not installed or not version 1.23.3. Installing Go 1.23.3..."
+    wget https://go.dev/dl/go1.23.3.linux-amd64.tar.gz
     sudo rm -rf $(which go)
-    sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
-    rm go1.22.0.linux-amd64.tar.gz
+    sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.3.linux-amd64.tar.gz
+    rm go1.23.3.linux-amd64.tar.gz
 else
-    echo "Go version 1.22.0 is already installed."
+    echo "Go version 1.23.3 is already installed."
 fi
 ##Check and install cosmovisor
 if ! command -v cosmovisor &> /dev/null; then
